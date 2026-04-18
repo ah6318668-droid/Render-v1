@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-primary: #0F172A;
+  --color-secondary: #F59E0B;
+  --color-accent: #38BDF8;
+  --color-deep: #0B1120;
+  --color-surface: #1E293B;
+  --color-dim: #94A3B8;
+  
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-4xl: 3rem;
+}
+
+@layer base {
+  body {
+    @apply bg-deep text-white font-sans antialiased selection:bg-secondary/30 text-sm overflow-x-hidden;
+    direction: rtl;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+  
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-2xl border border-white/5;
+  }
+
+  .glow-orange {
+    @apply absolute blur-[120px] rounded-full opacity-30;
+    background: radial-gradient(circle, var(--color-secondary) 0%, transparent 70%);
+  }
+
+  .glow-blue {
+    @apply absolute blur-[120px] rounded-full opacity-20;
+    background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  }
+
+  .btn-premium {
+    @apply relative overflow-hidden px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 active:scale-95;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, #D97706 100%);
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  }
+
+  .btn-premium:hover {
+    @apply -translate-y-1;
+    box-shadow: 0 0 50px rgba(245, 158, 11, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.arch-grid {
+  @apply fixed inset-0 pointer-events-none opacity-20;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: -1;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+.floating-line {
+  @apply absolute h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-20;
+  width: 300px;
+  animation: slideLine 8s infinite linear;
+}
+
+@keyframes slideLine {
+  0% { transform: translateX(100vw) rotate(45deg); opacity: 0; }
+  20% { opacity: 0.2; }
+  80% { opacity: 0.2; }
+  100% { transform: translateX(-100vw) rotate(45deg); opacity: 0; }
+}
+
+h1 {
+  @apply leading-[1.2] text-white;
+  background: linear-gradient(to bottom, #FFFFFF 30%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  @apply leading-[1.3] text-white;
+  background: linear-gradient(to bottom, #FFFFFF 30%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
